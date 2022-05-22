@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,8 +13,8 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "creditcard", schema = "creditcard")
-public class CreditCard
+@Table(name = "creditcarduno", schema = "creditcards")
+public class CreditCard implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +23,11 @@ public class CreditCard
     @Column(name = "your_passion", nullable = false, length =30)
     private String yourPassion;
 
-    private Double monthlySalary;
-
     @Column(name = "monthly_salary_from")
     private Double monthlySalaryFrom;
 
     @Column(name = "monthly_salary_to")
     private Double monthlySalaryTo;
-
-    private Integer age;
 
     @Column(name = "age_from")
     private Integer ageFrom;
@@ -41,7 +38,7 @@ public class CreditCard
     @Column(name = "credit_card_suggested", length = 150)
     private String creditCardSuggested;
 
-    @Column(name = "usario_creacion", nullable = false)
+    @Column(name = "usario_creacion")
     private String usuarioCreacion;
 
     @Column(name = "fecha_creacion", nullable = false)
@@ -51,16 +48,15 @@ public class CreditCard
     private Date fechaModificacion;
 
 
-    public CreditCard(Long id, String yourPassion, Double monthlySalary, Double monthlySalaryFrom, Double monthlySalaryTo, Integer age, Integer ageFrom, Integer ageTo, String creditCardSuggested) {
+    public CreditCard(Long id, String yourPassion, Double monthlySalaryFrom, Double monthlySalaryTo, Integer ageFrom, Integer ageTo, String creditCardSuggested, String usuarioCreacion) {
         this.id = id;
         this.yourPassion = yourPassion;
-        this.monthlySalary = monthlySalary;
         this.monthlySalaryFrom = monthlySalaryFrom;
         this.monthlySalaryTo = monthlySalaryTo;
-        this.age = age;
         this.ageFrom = ageFrom;
         this.ageTo = ageTo;
         this.creditCardSuggested = creditCardSuggested;
+        this.usuarioCreacion = usuarioCreacion;
     }
 
     @Override
@@ -68,12 +64,12 @@ public class CreditCard
         if (this == o) return true;
         if (!(o instanceof CreditCard)) return false;
         CreditCard that = (CreditCard) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getYourPassion(), that.getYourPassion()) && Objects.equals(getMonthlySalary(), that.getMonthlySalary()) && Objects.equals(getMonthlySalaryFrom(), that.getMonthlySalaryFrom()) && Objects.equals(getMonthlySalaryTo(), that.getMonthlySalaryTo()) && Objects.equals(getAge(), that.getAge()) && Objects.equals(getAgeFrom(), that.getAgeFrom()) && Objects.equals(getAgeTo(), that.getAgeTo()) && Objects.equals(getCreditCardSuggested(), that.getCreditCardSuggested()) && Objects.equals(getUsuarioCreacion(), that.getUsuarioCreacion()) && Objects.equals(getFechaCreacion(), that.getFechaCreacion()) && Objects.equals(getFechaModificacion(), that.getFechaModificacion());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getYourPassion(), that.getYourPassion()) && Objects.equals(getMonthlySalaryFrom(), that.getMonthlySalaryFrom()) && Objects.equals(getMonthlySalaryTo(), that.getMonthlySalaryTo()) && Objects.equals(getAgeFrom(), that.getAgeFrom()) && Objects.equals(getAgeTo(), that.getAgeTo()) && Objects.equals(getCreditCardSuggested(), that.getCreditCardSuggested()) && Objects.equals(getUsuarioCreacion(), that.getUsuarioCreacion()) && Objects.equals(getFechaCreacion(), that.getFechaCreacion()) && Objects.equals(getFechaModificacion(), that.getFechaModificacion());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getYourPassion(), getMonthlySalary(), getMonthlySalaryFrom(), getMonthlySalaryTo(), getAge(), getAgeFrom(), getAgeTo(), getCreditCardSuggested(), getUsuarioCreacion(), getFechaCreacion(), getFechaModificacion());
+        return Objects.hash(getId(), getYourPassion(), getMonthlySalaryFrom(), getMonthlySalaryTo(), getAgeFrom(), getAgeTo(), getCreditCardSuggested(), getUsuarioCreacion(), getFechaCreacion(), getFechaModificacion());
     }
 
     @PrePersist
