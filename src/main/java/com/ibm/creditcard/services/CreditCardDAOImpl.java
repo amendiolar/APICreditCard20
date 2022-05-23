@@ -22,8 +22,8 @@ public class CreditCardDAOImpl implements CreditCardDAO
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalaryFrom, Double monthlySalaryTo,Integer ageFrom, Integer ageTo )
+    public Iterable<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalary,Integer age )
     {
-        return creditCardRepository.buscarTarjetaSugerida(yourPassion, monthlySalaryFrom, monthlySalaryTo,ageFrom, ageTo );
+        return creditCardRepository.buscarTarjetaSugerida(yourPassion, monthlySalary,age );
     }
 }

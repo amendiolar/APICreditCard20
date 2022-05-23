@@ -27,10 +27,10 @@ public class CreditCardController
     }
 
     @GetMapping("/sugerencia")
-    public ResponseEntity<?> buscarTarjetaSugerida(@RequestBody String yourPassion, Double monthlySalaryFrom, Double monthlySalaryTo,Integer ageFrom, Integer ageTo)
+    public ResponseEntity<?> buscarTarjetaSugerida(@RequestParam(name="passion") String yourPassion, @RequestParam(name="salary") Double monthlySalary, @RequestParam Integer age)
     {
-        Optional<CreditCard> creditCard = creditCardDao.buscarTarjetaSugerida(yourPassion, monthlySalaryFrom, monthlySalaryTo,ageFrom, ageTo);
-        return new ResponseEntity<Optional<CreditCard>>(creditCard, HttpStatus.OK);
+        Iterable<CreditCard> creditCard = creditCardDao.buscarTarjetaSugerida(yourPassion, monthlySalary,age);
+        return new ResponseEntity<Iterable<CreditCard>>(creditCard, HttpStatus.OK);
     }
 
 }

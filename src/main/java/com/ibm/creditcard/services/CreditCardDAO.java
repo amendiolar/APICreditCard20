@@ -7,5 +7,5 @@ import java.util.Optional;
 public interface CreditCardDAO
 {
     public CreditCard save(CreditCard entidad);
-    public Optional<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalaryFrom, Double monthlySalaryTo,Integer ageFrom, Integer ageTo );
+    public Iterable<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalary,Integer age);
 }

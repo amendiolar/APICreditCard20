@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface CreditCardRepository extends CrudRepository<CreditCard, Long>
 {
 
-    @Query("select c from CreditCard c where c.yourPassion = ?1 and c.monthlySalaryFrom <= ?2 and c.monthlySalaryTo >= ?3 and c.ageFrom <= ?4 and c.ageTo >= ?5")
-    public Optional<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalaryFrom, Double monthlySalaryTo,Integer ageFrom, Integer ageTo );
+    @Query("select c from CreditCard c where c.yourPassion = ?1 and c.monthlySalaryFrom <= ?2 and c.monthlySalaryTo >= ?2 and c.ageFrom <= ?3 and c.ageTo >= ?3")
+    public Iterable<CreditCard> buscarTarjetaSugerida(String yourPassion, Double monthlySalary,Integer age );
 }
