@@ -44,7 +44,7 @@ public class CreditCardController
                 .run(()->{
                     Iterable<CreditCard> creditCard = creditCardDao.buscarTarjetaSugerida(yourPassion, monthlySalary,age);
 
-                    logger.info("Sugerencia encontrada");
+                    //logger.info("Sugerencia encontrada");
 
                     return new ResponseEntity<Iterable<CreditCard>>(creditCard, HttpStatus.OK);
                 }, e-> metodoAlternativo(yourPassion,monthlySalary,age,e));
